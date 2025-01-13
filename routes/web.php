@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
@@ -28,5 +29,8 @@ Route::prefix('weather')->group(function () {
     Route::get('/current', [WeatherController::class, 'getCurrentWeather']);
     Route::get('/forecast', [WeatherController::class, 'getForecast']);
 });
-
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/payments', [App\Http\Controllers\Admin\PaymentController::class, 'index']);
+    Route::post('/admin/payments/{payment}/status', [App\Http\Controllers\Admin\PaymentController::class, 'updateStatus']);
+});
 require __DIR__.'/auth.php';

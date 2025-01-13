@@ -52,36 +52,24 @@
     <div id="paymentModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
             <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 mb-4">Upgrade to Premium</h3>
+                <h3 class="text-lg leading-6 font-medium text-white dark:text-white mb-4">Upgrade to Premium</h3>
                 <div class="mt-2 px-7 py-3">
                     <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mb-4">
-                        <p class="text-lg font-semibold">Premium Features:</p>
+                        <p class="text-lg font-semibold text-white dark:text-white">Premium Features:</p>
                         <ul class="text-left text-sm mt-2 space-y-2">
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <li class="flex items-center text-white dark:text-white">
+                                <svg class="w-4 h-4 mr-2 text-green-500 text-white dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                                 Full 24-hour forecast access
                             </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Detailed weather information
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                No advertisements
-                            </li>
                         </ul>
                     </div>
-                    <p class="text-xl font-bold mb-4">Price: $9.99/month</p>
+                    <p class="text-xl font-bold text-white dark:text-white mb-4">Price: Rp.199.000/month</p>
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-left mb-2">Payment Method</label>
-                            <select id="paymentMethod" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900">
+                            <label class="block text-sm font-medium text-left mb-2 text-white dark:text-white">Payment Method</label>
+                            <select id="paymentMethod" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 text-white dark:text-white">
                                 <option value="bank_transfer">Bank Transfer</option>
                                 <option value="credit_card">Credit Card</option>
                                 <option value="paypal">PayPal</option>
@@ -89,10 +77,10 @@
                         </div>
                         
                         <div id="bankDetails" class="text-left bg-blue-50 dark:bg-blue-900/30 p-3 rounded-md">
-                            <p class="font-semibold">Bank Transfer Details:</p>
-                            <p>Bank: Example Bank</p>
-                            <p>Account: 1234-5678-9012</p>
-                            <p>Name: Weather App</p>
+                            <p class="font-semibold text-white dark:text-white">Bank Transfer Details:</p>
+                            <p class="text-white dark:text-white">Bank: Mandiri</p>
+                            <p class="text-white dark:text-white">Account: 1234-5678-9012</p>
+                            <p class="text-white dark:text-white">Name: Weather App</p>
                         </div>
                     </div>
                 </div>
@@ -242,7 +230,7 @@
                 },
                 body: JSON.stringify({
                     payment_method: paymentMethod,
-                    amount: 9.99
+                    amount: 199.000
                 })
             })
             .then(response => response.json())
