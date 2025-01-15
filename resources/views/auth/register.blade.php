@@ -1,52 +1,105 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skybeacon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-blue-500 to-white font-[Poppins]">
+    <x-guest-layout>
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <span class="ml-3 text-2xl font-semibold text-blue-600">Skybeacon</span>
+                </div>
+            </nav>
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <main class="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4">
+            <div class="w-full max-w-md bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-8 mb-16">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-blue-600 mb-2">Register</h1>
+                    <p class="text-gray-600">Create your account</p>
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                    @csrf
+                    
+                    <!-- Name -->
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input type="text" 
+                               name="name"
+                               :value="old('name')"
+                               placeholder="Full Name" 
+                               class="!rounded-button w-full pl-10 pr-4 py-3 border border-blue-300 focus:border-blue-600 focus:ring focus:ring-blue-200 bg-white/60" 
+                               required 
+                               autofocus/>
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                    <!-- Email -->
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" 
+                               name="email"
+                               :value="old('email')"
+                               placeholder="Email Address" 
+                               class="!rounded-button w-full pl-10 pr-4 py-3 border border-blue-300 focus:border-blue-600 focus:ring focus:ring-blue-200 bg-white/60" 
+                               required/>
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                    <!-- Password -->
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password"
+                               name="password"
+                               placeholder="Password" 
+                               class="!rounded-button w-full pl-10 pr-4 py-3 border border-blue-300 focus:border-blue-600 focus:ring focus:ring-blue-200 bg-white/60" 
+                               required/>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                    <!-- Confirm Password -->
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password"
+                               name="password_confirmation"
+                               placeholder="Confirm Password" 
+                               class="!rounded-button w-full pl-10 pr-4 py-3 border border-blue-300 focus:border-blue-600 focus:ring focus:ring-blue-200 bg-white/60" 
+                               required/>
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                    <div class="flex items-center justify-between text-sm">
+                        <p class="text-sm text-gray-600">
+                            By registering, you agree to our 
+                            <a href="#" class="text-blue-600 hover:text-blue-500">Terms of Service</a> and 
+                            <a href="#" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>
+                        </p>
+                    </div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                    <button type="submit" class="!rounded-button w-full py-3 bg-blue-600 text-white font-semibold hover:opacity-90 transition-opacity">
+                        Register
+                    </button>
+                </form>
+            </div>
+        </main>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="/">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <footer class="absolute bottom-0 w-full py-4 text-center text-gray-600 text-sm">
+            <p>© 2024 Skybeacon. All Rights Reserved.</p>
+        </footer>
+    </x-guest-layout>
+</body>
+</html>
